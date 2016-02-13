@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import Model.User;
 import Service.RegService;
+import Service.RegService1;
 
 
 @WebServlet("/RegServlet")
@@ -31,15 +32,21 @@ public class RegServlet extends HttpServlet {
 		String password = request.getParameter("password");
 		String mobileTelephone = request.getParameter("mobileTelephone");
 		String email = request.getParameter("email");
+		
+		/*if(surname ^ name | middleName | login | password | mobileTelephone | email == null){
+			
+		}*/
+		
 		User user = new User (surname,name,middleName,login,password,mobileTelephone,email);
 		
 		try{
-			RegService regService = new RegService();
+			RegService1 regService = new RegService1();
 			boolean result = regService.regUser(user);
 			
-			if(result = true){
-				response.sendRedirect("login.jsp");
+			if(result == true){
+				response.sendRedirect("index.jsp");
 			}else{
+				response.sendRedirect("index.jsp");
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/reg.jsp");                  
 	            request.setAttribute("message", "Пользователь с таким ЛОГИНОМ или EMAIL уже существует! ");                                       
 	            dispatcher.forward(request, response);

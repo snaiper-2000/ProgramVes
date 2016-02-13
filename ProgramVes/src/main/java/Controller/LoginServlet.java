@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import Model.User;
+import Service.AuthService;
 
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
@@ -31,14 +32,20 @@ public class LoginServlet extends HttpServlet {
 		
 		//String loginUser = "admin";
 		//String passwordUser = "root";
-		
-		if(user.getLogin().equals(login) && user.getPassword().equals(password)){
+		AuthService authService = new AuthService();
+		boolean auth = authService.authUser(login, password);
+		//if(user.getLogin().equals(login) && user.getPassword().equals(password)){
+		if(auth == true){
 			HttpSession session = request.getSession();
-			session.setAttribute("user", user.getLogin());
+			session.setAttribute("user", login);
 			session.setMaxInactiveInterval(30*60);
 			//RequestDispatcher rd = getServletContext().getRequestDispatcher("/home.jsp");
 			//rd.include(request, response);
-			response.sendRedirect("home.jsp");//óòî÷íèòü?
+			//response.sendRedirect("home.jsp");//óòî÷íèòü?
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/home.jsp");                  
+            //request.setAttribute("message", "Имя пользователя или пароль неправильные ");                                       
+            dispatcher.forward(request, response);
+            System.out.println(session.getAttribute("user"));
 		}else{
 			/*RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.html");
             PrintWriter out= response.getWriter();

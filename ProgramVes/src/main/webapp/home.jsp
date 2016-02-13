@@ -8,7 +8,7 @@
 </head>
 <body>
 
-Welcom! <%=request.getParameter("user") %>
+Welcom! <%=session.getAttribute("user") %>
 Session <%=session.getId() %>
 
 

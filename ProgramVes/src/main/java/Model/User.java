@@ -1,13 +1,40 @@
 package Model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="user")
 public class User {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)//значения столбца будет сгенерировано с помощью базы данных
+	@Column(name = "id")
+	private Long id;
+	
+	@Column(name = "surname")
 	private String surname;
+	
+	@Column(name = "name")
 	private String name;
+	
+	@Column(name = "middleName")
 	private String middleName;
-	private String login;
-	private String password;
+	
+	@Column(name = "login")
+	private String login /*= "admin"*/;
+	
+	@Column(name = "password")
+	private String password/* = "root"*/;
+	
+	@Column(name = "mobileTelephone")
 	private String mobileTelephone;
+	
+	@Column(name = "email")
 	private String email;
 	
 	public User(){

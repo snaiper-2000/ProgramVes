@@ -22,11 +22,11 @@
   </tr>
   <tr>
     <td>Введите пароль:</td>
-    <td><input type="text" name="password" value=""></td>
+    <td><input type="password" name="password" value=""></td>
   </tr>
   <tr>
     <td><input type="submit" name="submit" value="OK" ></td>
-    <td><a href="http://localhost:8080/Ves/reg.jsp">Reg</a>
+    <td><a href="http://localhost:8080/ProgramVes/reg.jsp">Reg</a>
   </tr>
 </form> 
 </table>
