@@ -1,11 +1,13 @@
 package Model;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name="user")
@@ -37,6 +39,12 @@ public class User {
 	@Column(name = "email")
 	private String email;
 	
+	/*@OneToMany(mappedBy = "user")
+	private Set<Result> results;*/
+	
+	/*@Column(name = "date_reg")
+	private Date dateUserReg;//тест не реализованно
+	*/
 	public User(){
 		
 	}
@@ -120,7 +128,15 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	
 
 }

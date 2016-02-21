@@ -25,6 +25,8 @@ public class RegService {
 			transaction = session.getTransaction();
 			transaction.begin();
 			//session.beginTransaction();
+			
+			
 			session.saveOrUpdate(user);
 			transaction.commit();// применяем транзакцию
 		}catch(Exception e){

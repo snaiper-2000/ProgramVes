@@ -25,14 +25,53 @@
 <form action="home.jsp">
       <input type="submit" value="Home">
 </form>
+<br>
+
+<table height="100" bgcolor="#FFFFFF" border="1">
+   <tr>
+     <td width="10%" bgcolor="#87CEEB">№ операции</td>
+     <td width="10%" bgcolor="#87CEEB">Хронология действий</td>
+     <td width="10%" bgcolor="#87CEEB">Состояние действия</td>
+   </tr>
+   <tr>
+     <td bgcolor="#B0E0E6">1</td>
+     <td bgcolor="#B0E0E6">Одеть каску</td>
+     <td id="s1"><script type="text/javascript">
+                   if (${result.flag1} == false){
+                        document.write('Выполнено');
+                        document.getElementById("s1").style.backgroundColor = "LawnGreen";  
+                   }
+                   else{document.write('Ошибка');
+                   document.getElementById("s1").style.backgroundColor = "red";}
+                </script> </td>
+    </tr>
+    <tr>
+      <td bgcolor="#87CEEB">2</td>
+      <td bgcolor="#87CEEB">Одеть диэлектрические боты</td>
+      <td id="s2"><script type="text/javascript">
+                   if (${result.flag2} == false){
+                        document.write('Выполнено');
+                        document.getElementById("s2").style.backgroundColor = "LawnGreen";  
+                   }
+                   else{document.write('Ошибка');
+                   document.getElementById("s2").style.backgroundColor = "red";}
+                </script> </td>>
+    </tr>
+    <tr>
+      <td bgcolor="#B0E0E6">3</td>
+      <td bgcolor="#B0E0E6">Одеть диэлектрические перчатки</td>
+      <td id="s3"><script type="text/javascript">
+                   if (${result.flag3} == false){
+                        document.write('Выполнено');
+                        document.getElementById("s3").style.backgroundColor = "LawnGreen";
+                   }
+                   else{document.write('Ошибка');
+                   document.getElementById("s3").style.backgroundColor = "Yellow";}
+                </script></td>
+    </tr>
+    <tr><td>4</td><td>Flag4</td><td></td></tr>
 
 
-<table border="1">
-<tr><td>Колонка 1</td><td>Колонка 2</td><td>Колонка 3</td></tr>
-<tr><td>1</td><td>Flag1</td><td>${result.flag1}</td></tr>
-<tr><td>2</td><td>Flag2</td><td>${result.flag2}</td></tr>
-<tr><td>3</td><td>Flag3</td><td>${result.flag3}</td></tr>
-<tr><td>4</td><td>Flag4</td><td>${result.flag4}</td></tr>
-
+</table>
 </body>
 </html>
