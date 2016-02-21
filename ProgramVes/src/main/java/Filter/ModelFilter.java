@@ -5,7 +5,7 @@ import java.io.IOException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
-//import javax.servlet.RequestDispatcher;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -41,12 +41,33 @@ public class ModelFilter implements Filter {
         
         System.out.println("Перед ИФ "+session.getAttribute("user"));
         
-        if(session.getAttribute("user") == null){
+       /* if(session.getAttribute("user") == null){
     		
         	/*RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");                                                        
             dispatcher.forward(request, response);*/
     		
-        	res.sendRedirect("index.jsp");
+        	//res.sendRedirect("index.jsp");
+        	/*RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");                                                        
+            dispatcher.forward(request, response);
+        	
+    		
+    		//filterChain.doFilter(request, response);
+        }/*else{
+        
+        filterChain.doFilter(request, response);
+        	
+        	/*res.sendRedirect("uriPath");
+        	filterChain.doFilter(request, response);*/
+        
+
+       
+        //filterChain.doFilter(req, res);
+        if(session.getAttribute("user") == null){
+    		
+        	RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");                                                        
+            dispatcher.forward(request, response);
+    		
+        	//res.sendRedirect("index.jsp");
         	
     		
     		filterChain.doFilter(request, response);
@@ -55,9 +76,6 @@ public class ModelFilter implements Filter {
         	//res.sendRedirect("home.jsp");
         	filterChain.doFilter(request, response);
         }
-
-       
-           
 	}     
 	
 

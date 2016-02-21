@@ -28,6 +28,17 @@ public class LoginServlet extends HttpServlet {
 		String login = request.getParameter("login");
 		String password = request.getParameter("password");
 		
+		if(login.equals("") || password.equals("")){
+			
+			System.out.println("Условие сработало");
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");                  
+            request.setAttribute("message", "не введены имя пользователя или пароль");                                       
+            dispatcher.forward(request, response);
+			
+            
+		}
+		
 		//response.setContentType("charset=UTF-8");
 		
 		//String loginUser = "admin";
@@ -39,19 +50,11 @@ public class LoginServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("user", login);
 			session.setMaxInactiveInterval(30*60);
-			//RequestDispatcher rd = getServletContext().getRequestDispatcher("/home.jsp");
-			//rd.include(request, response);
-			//response.sendRedirect("home.jsp");//óòî÷íèòü?
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/home.jsp");                  
             //request.setAttribute("message", "Имя пользователя или пароль неправильные ");                                       
             dispatcher.forward(request, response);
             System.out.println(session.getAttribute("user"));
-		}else{
-			/*RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.html");
-            PrintWriter out= response.getWriter();
-            out.println("<font color=red>Either user name or password is wrong.</font>");//çàìåíèòü ñîîáùåíèåì
-            rd.include(request, response);*/
-            
+		}else{ 
             RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");                  
             request.setAttribute("message", "Имя пользователя или пароль неправильные ");                                       
             dispatcher.forward(request, response);

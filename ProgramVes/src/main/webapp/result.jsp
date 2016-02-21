@@ -4,17 +4,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Результат</title>
 </head>
 <body>
-
+СтраницаРезультат.
+<br>
 Добро пожаловать! <%=session.getAttribute("user") %>
 <br>
 Ваша Session <%=session.getId() %>
 <br>
-<td><a href="model/index.htm">Упражнение №1</a>
-<br>
-<td><a href="result.jsp">ТЕСТ! Страничка результат.</a>
+
 
 
 
@@ -22,11 +21,18 @@
 <form action="LogoutServlet" method="POST">
 <input type="submit" value="EXIT">
 </form> 
-
 <br>
+<form action="home.jsp">
+      <input type="submit" value="Home">
+</form>
 
-<a href="ResultServlet?flag1=true&flag2=false&flag3=true&flaf4=true">Reg Param Servlet</a>
 
+<table border="1">
+<tr><td>Колонка 1</td><td>Колонка 2</td><td>Колонка 3</td></tr>
+<tr><td>1</td><td>Flag1</td><td>${result.flag1}</td></tr>
+<tr><td>2</td><td>Flag2</td><td>${result.flag2}</td></tr>
+<tr><td>3</td><td>Flag3</td><td>${result.flag3}</td></tr>
+<tr><td>4</td><td>Flag4</td><td>${result.flag4}</td></tr>
 
 </body>
 </html>
