@@ -1,5 +1,7 @@
 package Service;
 
+import java.util.Date;
+
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -35,26 +37,22 @@ public class ResultService {
 		System.out.println("Сохранение результата UserLogin "+user);
 		
 		
-		/*SQLQuery queryInsert = session.createSQLQuery("insert into result (id, flag1, flag2, flag3, flag4) values (?, ?, ?, ?, ?)");
-		query.addEntity(Model.Result.class);
-		queryInsert.setParameter(0, userId);
-		queryInsert.setParameter(1, res.getFlag1());
-		queryInsert.setParameter(2, res.getFlag2());
-		queryInsert.setParameter(3, res.getFlag3());
-		queryInsert.setParameter(4, res.getFlag4());*/
-		
-		/*res.getFlag1();
-		res.getFlag2();
-		res.getFlag3();
-		res.getFlag4();*/
-		
-		
 		u.setId(userIdLong);
 		res.setUser(u);
+		
+		//получение текущей даты
+		Date date = new Date();
+		res.setDateResult(date);
 	
 		
 		session.saveOrUpdate(res);
 		
+		/*SQLQuery queryResultDate = session.createSQLQuery("SELECT date_result FROM result WHERE id=?;");
+		queryResultDate.addEntity(Model.Result.class);
+		queryResultDate.setParameter(0, userId);
+		Date d = (Date)queryResultDate.uniqueResult();
+		res.setDateResult(d);
+		System.out.println("Вызов даты из таблицы Result "+d);*/
 		transaction.commit();// применяем транзакцию
 		
 		//проверяем, что вернул нам метод uniqueResult()

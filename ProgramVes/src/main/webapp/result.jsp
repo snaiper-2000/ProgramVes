@@ -14,7 +14,7 @@
 Ваша Session <%=session.getId() %>
 <br>
 
-
+<!--${result.dateResult}-->
 
 
 

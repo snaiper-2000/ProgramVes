@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "result")
@@ -52,8 +56,9 @@ public class Result {
     @JoinColumn(name = "id")//из таблицы user
     private User user;
     
-    /*@Column(name = "date_result")
-    private String dateResult;*/
+    @Column(name = "date_result")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dateResult;
     
 
     public Result(){
@@ -314,6 +319,14 @@ public class Result {
 
 	public void setFlag32(String flag32) {
 		this.flag32 = flag32;
+	}
+
+	public Date getDateResult() {
+		return dateResult;
+	}
+
+	public void setDateResult(Date dateResult) {
+		this.dateResult = dateResult;
 	}
     
     

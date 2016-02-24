@@ -1,5 +1,9 @@
 package Service;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 //import org.hibernate.SessionFactory;
@@ -26,7 +30,13 @@ public class RegService {
 			transaction.begin();
 			//session.beginTransaction();
 			
+		//получение текущей даты	
+			Date date = new Date();
+		      /* DateFormat formatter = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+		       String s = formatter.format(now);
+		       System.out.println(s);*/
 			
+			user.setDateUserReg(date);
 			session.saveOrUpdate(user);
 			transaction.commit();// применяем транзакцию
 		}catch(Exception e){

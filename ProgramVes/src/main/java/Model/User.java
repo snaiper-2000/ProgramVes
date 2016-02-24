@@ -1,12 +1,16 @@
 package Model;
 
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 @Entity
@@ -40,11 +44,12 @@ public class User {
 	private String email;
 	
 	/*@OneToMany(mappedBy = "user")
-	private Set<Result> results;*/
+	private Set<Result> results;*/ //не реализованно
 	
-	/*@Column(name = "date_reg")
+	@Column(name = "date_reg")
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateUserReg;//тест не реализованно
-	*/
+	
 	public User(){
 		
 	}
@@ -137,6 +142,13 @@ public class User {
 		this.id = id;
 	}
 
+	public Date getDateUserReg() {
+		return dateUserReg;
+	}
+
+	public void setDateUserReg(Date dateUserReg) {
+		this.dateUserReg = dateUserReg;
+	}
 	
 
 }

@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import Model.User;
 import Service.RegService;
-import Service.RegService1;
+//import Service.RegService1;
 
 
 @WebServlet("/RegServlet")
@@ -40,7 +40,7 @@ public class RegServlet extends HttpServlet {
 		User user = new User (surname,name,middleName,login,password,mobileTelephone,email);
 		
 		try{
-			RegService1 regService = new RegService1();
+			RegService regService = new RegService();
 			boolean result = regService.regUser(user);
 			
 			if(result == true){
