@@ -64,6 +64,19 @@ public class Result {
     public Result(){
     	
     }
+    
+
+	public Long getResultID() {
+		return resultID;
+	}
+
+
+
+	public void setResultID(Long resultID) {
+		this.resultID = resultID;
+	}
+
+
 
 	public String getFlag1() {
 		return flag1;

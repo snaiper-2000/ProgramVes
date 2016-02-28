@@ -14,7 +14,10 @@
 <br>
 <td><a href="model/index.htm">Упражнение №1</a>
 <br>
-<td><a href="result.jsp">ТЕСТ! Страничка результат.</a>
+<!-- <td><a href="home_user.jsp">ТЕСТ! home_user.jsp.</a> -->
+<form action="HomeUserServlet" method="POST">
+<input type="submit" value="home_user.jsp">
+</form> 
 
 
 

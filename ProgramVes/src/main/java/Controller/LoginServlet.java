@@ -17,6 +17,7 @@ public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private User user = new User();
+	private AuthService authService = new AuthService();
        
     public LoginServlet() {
         
@@ -43,13 +44,17 @@ public class LoginServlet extends HttpServlet {
 		
 		//String loginUser = "admin";
 		//String passwordUser = "root";
-		AuthService authService = new AuthService();
+		//AuthService authService = new AuthService();
 		boolean auth = authService.authUser(login, password);
 		//if(user.getLogin().equals(login) && user.getPassword().equals(password)){
 		if(auth == true){
 			HttpSession session = request.getSession();
 			session.setAttribute("user", login);
 			session.setMaxInactiveInterval(30*60);
+			
+			User userDB = authService.getUserDB(login);
+			session.setAttribute("userBD", userDB);
+			
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/home.jsp");                  
             //request.setAttribute("message", "Имя пользователя или пароль неправильные ");                                       
             dispatcher.forward(request, response);
@@ -59,6 +64,7 @@ public class LoginServlet extends HttpServlet {
             request.setAttribute("message", "Имя пользователя или пароль неправильные ");                                       
             dispatcher.forward(request, response);
 		}
+		
 	}
 
 }
