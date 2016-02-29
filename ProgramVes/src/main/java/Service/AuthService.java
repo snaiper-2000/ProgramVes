@@ -9,6 +9,7 @@ import Hibernate.HibernateUtil;
 import Model.User;
 
 public class AuthService {
+	//private User user = new User();
 	
 	public boolean authUser(String login,String password){
 		boolean loginBd = getUserLoginAndPassword(login, password);

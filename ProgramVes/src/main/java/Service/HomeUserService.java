@@ -1,6 +1,6 @@
 package Service;
 
-//import java.util.List;
+import java.util.List;
 
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
@@ -8,26 +8,27 @@ import org.hibernate.Transaction;
 
 import Hibernate.HibernateUtil;
 //import Model.Result;
-import Model.User;
+//import Model.User;
 
 public class HomeUserService {
-	
+	//private User user = new User();
 		
-		public void getHomeUserDate(User user){
+		public List<Object []> getHomeUserDate(Long userId){
+			
+			System.out.println("Этот гадкий user "+userId);
 			Session session = HibernateUtil.openSession();
 			Transaction transaction = null;
-			//List<Object []> resultDate = null;
-			//Result result = null;
-			System.out.println("1");
+			List<Object []> resultDate = null;
+			
+			
 			try{
 				transaction = session.getTransaction();
 				transaction.begin();
-				System.out.println("2");
 				SQLQuery query = session.createSQLQuery("SELECT date_result FROM result WHERE id=?;");
-				query.setParameter(0, user.getId());
-				query.addEntity(Model.Result.class);
-				System.out.println("3");
-				/*resultDate =*/ query.list();
+				query.setParameter(0, userId);
+				//query.addEntity(Model.Result.class);
+				resultDate = query.list();
+				System.out.println(resultDate);
 				transaction.commit();
 				
 			}catch(Exception e){
@@ -40,12 +41,10 @@ public class HomeUserService {
 			}
 			
 			/*for(Object [] obj :resultDate ){
-				for(int i = 0; i< resultDate.size(); i++ ){
-					System.out.println(obj[i]);
-				}	
+					System.out.println(""+obj[0]);
 				
 	    	}*/
 			
-			//return result;
+			return resultDate;
 		}
 }

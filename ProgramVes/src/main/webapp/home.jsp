@@ -4,9 +4,95 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon"/>
+<title>ВЭС Главное меню</title>
+<link rel="stylesheet" href="/ProgramVes/main/resources/css/cssHome.css"/>
+<style>
+   body
+{
+    background-color: #8BB9C7;
+    font-family: sans-serif;
+}
+  
+.style1
+{
+    
+   vertical-align:top 
+}
+
+.style2
+{
+   font-family: Arial, Helvetica, sans-serif; 
+   vertical-align:middle; 
+   font-size: 180%;
+   text-align:  center;
+   
+}
+
+.style3
+{
+    
+   color:blue;
+}
+
+.style4
+{
+    
+   color:red;
+}
+
+.style5
+{
+   width:60px;
+   height:40px;
+   color:red; 
+}
+
+.style6
+{
+   font-size: 200%;
+   border-bottom: 2px solid maroon;
+   font-weight: normal;
+   padding-bottom: 5px; 
+}
+
+.style7
+{
+   height:40px;
+   color:red; 
+}
+  </style>
 </head>
 <body>
+
+<table height="100" bgcolor="#FFFFFF" cellpadding="0">
+            <tr>
+        <td class="style1"><img src="img/ves.png"  width="120" height="100" /></td>
+        <td class="style2" >Программа подготовки оперативно-ремонтного персонала по обслуживанию оборудования подстанций ВЭС </td>
+            </tr>
+        </table>
+        
+        <table height="100" bgcolor="#8BB9C7" cellpadding="0">
+            <tr>
+        <td class="style3" width="47%">Произведен вход в систему под логином: <b class="style4"><%=session.getAttribute("user") %></b></td>
+       <!--  <td class="style4" width="2%"><%=session.getAttribute("user") %></td>     -->
+        <td width="49%"><form action="HomeUserServlet" method="POST">
+            <input type="submit" class="style7" value="Посмотреть результаты предыдущих переключений">
+            </form></td>  
+        <td class="style5" width="2%"><form action="LogoutServlet" method="POST">
+            <input type="submit" class="style5" value="EXIT">
+            </form>   
+        </td>
+        </tr>
+        <tr>
+        <td>Текущая сессия (для теста)<%=session.getId() %></td>
+        </tr>
+</table>
+
+        <p class="style6">Обучение</p>
+        <p><a href="model/index.htm">Подстанция 35 кВ. Задание: Отключить Т1.</a></p>
+        
+   
 
 Добро пожаловать! <%=session.getAttribute("user") %>
 <br>

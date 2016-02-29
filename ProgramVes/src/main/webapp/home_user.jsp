@@ -1,29 +1,114 @@
-@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon"/>
+<title>ВЭС Дата выполнения переключений</title>
+<link rel="stylesheet" href="/ProgramVes/main/resources/css/cssHome.css"/>
+<style>
+   body
+{
+    background-color: #8BB9C7;
+    font-family: sans-serif;
+}
+  
+.style1
+{
+    
+   vertical-align:top 
+}
+
+.style2
+{
+   font-family: Arial, Helvetica, sans-serif; 
+   vertical-align:middle; 
+   font-size: 180%;
+   text-align:  center;
+   
+}
+
+.style3
+{
+    
+   color:blue;
+}
+
+.style4
+{
+    
+   color:red;
+}
+
+.style5
+{
+   width:60px;
+   height:40px;
+   color:red; 
+}
+
+.style6
+{
+   font-size: 200%;
+   border-bottom: 2px solid maroon;
+   font-weight: normal;
+   padding-bottom: 5px; 
+}
+
+.style7
+{
+   height:40px;
+   color:red; 
+}
+  </style>
 </head>
+
 <body>
 
-Добро пожаловать! <%=session.getAttribute("user") %>
-<br>
-Ваша Session <%=session.getId() %>
-<br>
-<td><a href="home.jsp">ТЕСТ!(Домашняя страница) home.jsp.</a>
+<table height="100" bgcolor="#FFFFFF" cellpadding="0">
+            <tr>
+        <td class="style1"><img src="img/ves.png"  width="120" height="100" /></td>
+        <td class="style2" >Дата выполнения переключений </td>
+            </tr>
+        </table>
+        <table height="100" bgcolor="#8BB9C7" cellpadding="0">
+            <tr>
+        <td class="style4" >Произведен вход в систему под логином: <%=session.getAttribute("user") %></td>
+        <!-- <td class="style4"><%=session.getAttribute("user") %></td>  -->    
+        <td><form action="home.jsp" method="POST">
+            <input type="submit" class="style7" value="Главное меню">
+            </form></td>  
+        <td class="style5"><form action="LogoutServlet" method="POST">
+            <input type="submit" class="style5" value="EXIT">
+            </form>   
+        </td>
+        </tr>
+        <tr>
+        <td>Текущая сессия (для теста)<%=session.getId() %></td>
+        </tr>
+</table>
 
-<form action="LogoutServlet" method="POST">
-<input type="submit" value="EXIT">
-</form> 
 
-
-
-
-
-
-
+<table height="100" bgcolor="#FFFFFF" border="1">
+<tr>
+	<td>Дата выполнения переключений: <% if( request.getAttribute("message") != null ){ %>
+    ${message}
+    <% } %></td>
+	</tr>
+	<tr>
+<core:forEach items="${resultDate}" var="Date">
+	<tr>
+	<td><form action="ResultUserServlet" method="get">
+	    <!-- скрытое поле для передачи выбранной даты в Servlet -->
+	    <input name="resultDate" type="hidden" value="${Date}">
+        <input type="submit" value="${Date}">
+        </form> 
+    </td>
+	</tr>
+</core:forEach>
+</table>
 
 </body>
 </html>
