@@ -69,18 +69,20 @@
 
 <table height="100" bgcolor="#FFFFFF" cellpadding="0">
             <tr>
-        <td class="style1"><img src="img/ves.png"  width="120" height="100" /></td>
-        <td class="style2" >Дата выполнения переключений </td>
+        <td class="style1" width="5%"><img src="img/ves.png"  width="120" height="100" /></td>
+        <td class="style2" width="80%" >Дата выполнения переключений </td>
             </tr>
         </table>
+        
+        
         <table height="100" bgcolor="#8BB9C7" cellpadding="0">
             <tr>
-        <td class="style4" >Произведен вход в систему под логином: <%=session.getAttribute("user") %></td>
+        <td class="style3" width="47%" >Произведен вход в систему под логином: <b class="style4"><%=session.getAttribute("user") %></b></td>
         <!-- <td class="style4"><%=session.getAttribute("user") %></td>  -->    
-        <td><form action="home.jsp" method="POST">
+        <td width="49%"><form action="home.jsp" method="POST">
             <input type="submit" class="style7" value="Главное меню">
             </form></td>  
-        <td class="style5"><form action="LogoutServlet" method="POST">
+        <td class="style5" width="2%"><form action="LogoutServlet" method="POST">
             <input type="submit" class="style5" value="EXIT">
             </form>   
         </td>
@@ -91,7 +93,7 @@
 </table>
 
 
-<table height="100" bgcolor="#FFFFFF" border="1">
+<table height="100" bgcolor="#FFFFFF" border="1" width="30%">
 <tr>
 	<td>Дата выполнения переключений: <% if( request.getAttribute("message") != null ){ %>
     ${message}

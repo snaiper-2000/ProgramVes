@@ -115,8 +115,8 @@
 <br>
 
 <a href="ResultServlet?
-flag001=false&
-flag002=false&
+flag001=true&
+flag002=true&
 flag003=false&
 flag005=false&
 flag006=false&

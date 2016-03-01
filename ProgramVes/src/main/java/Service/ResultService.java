@@ -45,7 +45,8 @@ public class ResultService {
 		res.setDateResult(date);
 	
 		
-		session.saveOrUpdate(res);
+		//session.saveOrUpdate(res);
+		session.save(res);
 		
 		/*SQLQuery queryResultDate = session.createSQLQuery("SELECT date_result FROM result WHERE id=?;");
 		queryResultDate.addEntity(Model.Result.class);
