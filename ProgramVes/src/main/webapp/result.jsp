@@ -21,7 +21,7 @@
             <tr>
         <td class="style3" width="47%">Произведен вход в систему под логином: <b class="style4"><%=session.getAttribute("user") %></b></td>
        <!--  <td class="style4" width="2%"><%=session.getAttribute("user") %></td>  -->
-        <td width="49%"><form action="home.jsp" method="POST">
+        <td width="49%"><form action="OpenHomeServlet" method="POST">
             <input type="submit" class="style7" value="Главное меню">
             </form></td>  
         <td class="style5" width="2%"><form action="LogoutServlet" method="POST">
