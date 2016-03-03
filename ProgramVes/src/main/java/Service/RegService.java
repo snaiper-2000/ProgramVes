@@ -1,7 +1,5 @@
 package Service;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.hibernate.SQLQuery;
@@ -15,20 +13,26 @@ import Model.User;
 public class RegService {
 	
 	public boolean regUser(User user){
-		//SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		Session session = HibernateUtil.openSession();
+		Boolean result;
 		
-		if(userInBd(user) == true){
+		String userLoginDB = userInBd(user);
+		
+		//проверяет совпадает ли введенный логин с имеющимся в базе
+		if(user.getLogin().equals(userLoginDB)){
+			result = false;
+		}else{
+		
+	    result = true;
+/*		if(userInBd(user) == true){
 			return false;//проверки существования пользователя по логину и email в базе
 		}
-		
+*/		
 		Transaction transaction = null;
-		//Transaction transaction = null;
 		
 		try{
 			transaction = session.getTransaction();
 			transaction.begin();
-			//session.beginTransaction();
 			
 		//получение текущей даты	
 			Date date = new Date();
@@ -37,6 +41,7 @@ public class RegService {
 		       System.out.println(s);*/
 			
 			user.setDateUserReg(date);
+			
 			session.saveOrUpdate(user);
 			transaction.commit();// применяем транзакцию
 		}catch(Exception e){
@@ -46,33 +51,31 @@ public class RegService {
 			e.printStackTrace();
 		}finally{
 			session.close();
-			//sessionFactory.close();
 		}
-		
-		return true;
 	}
+		
+		return result; 
+	} 
 	
-	//Метод проверки существования пользователя по логину и email в базе
-		public boolean userInBd(User user){
-			//SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+	//Метод проверки существования пользователя по логину в базе
+		public String userInBd(User user){
 			Session session = HibernateUtil.openSession();
-			boolean result = false;
-			//Session session = sessionFactory.openSession();
 			Transaction transaction = null;
+			String userLoginDB = null;
 			
 			try{
 				transaction = session.getTransaction();
 				transaction.begin();
-				//session.beginTransaction();
-				SQLQuery query = session.createSQLQuery("SELECT * FROM user WHERE login=?;");
+				SQLQuery query = session.createSQLQuery("SELECT login FROM user WHERE login=?;");
 				query.setParameter(0, user.getLogin());
-				query.addEntity(Model.User.class);
+				//query.addEntity(Model.User.class);
 				//query.uniqueResult();
-				User u = (User) query.uniqueResult();//возвращает экземпляр или null
+				userLoginDB = (String) query.uniqueResult();//возвращает экземпляр или null
 				transaction.commit();// применяем транзакцию
 				
-				//проверяем, что вернул нам метод uniqueResult()
-				if(u!=null) result = true;
+				
+				System.out.println("Пользователь с логином = "+userLoginDB+"уже существует");
+				
 			}catch(Exception e){
 				 
 				//отменяем транзакцию
@@ -83,7 +86,9 @@ public class RegService {
 				//sessionFactory.close();
 			}
 			
-			return result;
+			
+			
+			return userLoginDB;
 		}
 
 

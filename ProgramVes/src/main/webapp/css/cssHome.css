@@ -4,13 +4,13 @@ body
     font-family: sans-serif;
 }
   
-.formulario1
+.style1
 {
     
    vertical-align:top 
 }
 
-.formulario2
+.style2
 {
    font-family: Arial, Helvetica, sans-serif; 
    vertical-align:middle; 
@@ -19,29 +19,35 @@ body
    
 }
 
-.formulario3
+.style3
 {
     
    color:blue;
 }
 
-.formulario4
+.style4
 {
     
    color:red;
 }
 
-.formulario5
+.style5
 {
    width:60px;
    height:40px;
    color:red; 
 }
 
-.formulario6
+.style6
 {
    font-size: 200%;
    border-bottom: 2px solid maroon;
    font-weight: normal;
    padding-bottom: 5px; 
+}
+
+.style7
+{
+   height:40px;
+   color:red; 
 }

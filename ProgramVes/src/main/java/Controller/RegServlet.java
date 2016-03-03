@@ -44,11 +44,14 @@ public class RegServlet extends HttpServlet {
 			boolean result = regService.regUser(user);
 			
 			if(result == true){
-				response.sendRedirect("index.jsp");
+				//response.sendRedirect("index.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");                  
+	            request.setAttribute("message", "Вы успешно зарегистрированны. <br> Войдите в свою учетную запись");                                       
+	            dispatcher.forward(request, response);
 			}else{
-				response.sendRedirect("index.jsp");
+				//response.sendRedirect("index.jsp");
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/reg.jsp");                  
-	            request.setAttribute("message", "Пользователь с таким ЛОГИНОМ или EMAIL уже существует! ");                                       
+	            request.setAttribute("message", "Пользователь с таким ЛОГИНОМ уже существует! ");                                       
 	            dispatcher.forward(request, response);
 			}
 		}catch(Exception e){

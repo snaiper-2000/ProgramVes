@@ -38,7 +38,7 @@ public class LoginServlet extends HttpServlet {
             dispatcher.forward(request, response);
 			
             
-		}
+		}else{
 		
 		//response.setContentType("charset=UTF-8");
 		
@@ -64,7 +64,7 @@ public class LoginServlet extends HttpServlet {
             request.setAttribute("message", "Имя пользователя или пароль неправильные ");                                       
             dispatcher.forward(request, response);
 		}
-		
+		}
 	}
 
 }

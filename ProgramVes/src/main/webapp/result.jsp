@@ -4,28 +4,36 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Результат</title>
+<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon"/>
+<title>ВЭС Результаты переключений</title>
+<link rel="stylesheet" href="css/cssHome.css"/>
 </head>
 <body>
-СтраницаРезультат.
-<br>
-Добро пожаловать! <%=session.getAttribute("user") %>
-<br>
-Ваша Session <%=session.getId() %>
-<br>
 
-<!--${result.dateResult}-->
+<table height="100" bgcolor="#FFFFFF" cellpadding="0">
+            <tr>
+        <td class="style1" width="5%"><img src="img/ves.png"  width="120" height="100" /></td>
+        <td class="style2" width="80%">Результаты переключений </td>
+            </tr>
+        </table>
+        
+        <table height="100" bgcolor="#8BB9C7" cellpadding="0">
+            <tr>
+        <td class="style3" width="47%">Произведен вход в систему под логином: <b class="style4"><%=session.getAttribute("user") %></b></td>
+       <!--  <td class="style4" width="2%"><%=session.getAttribute("user") %></td>  -->
+        <td width="49%"><form action="home.jsp" method="POST">
+            <input type="submit" class="style7" value="Главное меню">
+            </form></td>  
+        <td class="style5" width="2%"><form action="LogoutServlet" method="POST">
+            <input type="submit" class="style5" value="EXIT">
+            </form>   
+        </td>
+        </tr>
+        <tr>
+        <td>Текущая сессия (для теста)<%=session.getId() %></td>
+        </tr>
+</table>
 
-
-
-<form action="LogoutServlet" method="POST">
-<input type="submit" value="EXIT">
-</form> 
-<br>
-<form action="home.jsp">
-      <input type="submit" value="Home">
-</form>
-<br>
 
 <table height="100" bgcolor="#FFFFFF" border="1">
    <tr>
