@@ -13,19 +13,30 @@
             <form class="formulario" method="POST" action="LoginServlet">
                 <h2><img src="img/ves.png" /></h2>
                 <p>Волковысcкие электрические сети</p>
-                <p><input type="text" name="login"></p>
-                <p><input type="password" name="password" value=""></p>
+                <p><input type="text" name="login" placeholder="Логин"></p>
+                <p><input type="password" name="password" placeholder="Пароль"></p>
              <!--    <h:messages infoStyle="color: blue;list-style:none;" errorStyle="color:red;list-style:none;"/>  -->
+                <p2><% if( request.getAttribute("message") != null ){ %>
+                      ${message}
+                      <% } %>
+                </p2>
                 <section class="seccionBotones">
-                    
+                    <table width="100%">
+                    <tr>
+                    <td width="50%">
+                    <input class="seccionBotonesReg" type="submit" name="submit" value="Регистрация" formaction="reg.jsp" >
+                    </td>
+                    <td width="50%">
                     <input type="submit" name="submit" value="Войти" >
+                    </td>
+                    </table>
                 </section>
             </form>
     </section>
 
 
 
-<table>
+<!-- <table>
 <form method="POST" action="LoginServlet">
   <tr>
     <td>Введите логин:</td>
@@ -41,8 +52,8 @@
   </tr>
 </form> 
 </table>
-<% if( request.getAttribute("message") != null ){ %>
+<%// if( request.getAttribute("message") != null ){ %>
     ${message}
-<% } %>
+<%// } %>  -->
 </body>
 </html>

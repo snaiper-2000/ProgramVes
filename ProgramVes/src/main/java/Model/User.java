@@ -44,6 +44,7 @@ public class User {
 	private String email;
 	
 	/*@OneToMany(mappedBy = "user")
+	 * @JoinColumn(name="users")
 	private Set<Result> results;*/ //не реализованно
 	
 	@Column(name = "date_reg")

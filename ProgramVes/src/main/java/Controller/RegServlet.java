@@ -39,6 +39,18 @@ public class RegServlet extends HttpServlet {
 		
 		User user = new User (surname,name,middleName,login,password,mobileTelephone,email);
 		
+		
+        if(surname.equals("") || name.equals("") || middleName.equals("") || login.equals("") || password.equals("") || mobileTelephone.equals("") || email.equals("")){
+			
+			//System.out.println("Условие сработало");
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/reg.jsp");                  
+            request.setAttribute("message", "Не заполнены все поля!");                                       
+            dispatcher.forward(request, response);
+			return;
+            
+		}
+		
 		try{
 			RegService regService = new RegService();
 			boolean result = regService.regUser(user);

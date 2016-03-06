@@ -92,6 +92,15 @@ body
     font-size: 20px;
     font-family: arial, sans-serif;
 }
+
+.formulario p2
+{
+    
+   color:#FF0000;
+   font-weight: bold;
+   font-size: 15px;
+   font-family: arial, sans-serif;
+}
   
 .seccionBotones
 {
@@ -101,6 +110,14 @@ body
     padding-bottom: 10px;
     padding-top: 10px;
     text-align: right;
+}
+
+.seccionBotonesReg
+{
+   
+   padding-left: 8%;
+   padding-right: 8%;  
+   color:blue;
 }
   
 @-webkit-keyframes entrada

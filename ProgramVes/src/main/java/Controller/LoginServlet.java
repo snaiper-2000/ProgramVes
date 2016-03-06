@@ -36,17 +36,22 @@ public class LoginServlet extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");                  
             request.setAttribute("message", "не введены имя пользователя или пароль");                                       
             dispatcher.forward(request, response);
-			
-            
-		}else{
+			return;
+		}
 		
-		//response.setContentType("charset=UTF-8");
 		
-		//String loginUser = "admin";
-		//String passwordUser = "root";
-		//AuthService authService = new AuthService();
 		boolean auth = authService.authUser(login, password);
-		//if(user.getLogin().equals(login) && user.getPassword().equals(password)){
+		
+		//переход на страницу admin_home.jsp
+		if(login.equals("admin")){
+			if(auth == true){
+				
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/admin_home.jsp");                                                        
+	            dispatcher.forward(request, response);
+				return;
+			}
+		}
+		
 		if(auth == true){
 			HttpSession session = request.getSession();
 			session.setAttribute("user", login);
@@ -63,7 +68,6 @@ public class LoginServlet extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");                  
             request.setAttribute("message", "Имя пользователя или пароль неправильные ");                                       
             dispatcher.forward(request, response);
-		}
 		}
 	}
 
