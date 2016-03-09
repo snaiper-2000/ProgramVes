@@ -22,7 +22,7 @@ public class AdminHomeService {
 		try{
 			transaction = session.getTransaction();
 			transaction.begin();
-			SQLQuery query = session.createSQLQuery("SELECT * FROM user WHERE id=25;");
+			SQLQuery query = session.createSQLQuery("SELECT * FROM user;");
 			//query.setParameter(0, user.getLogin());
 			query.addEntity(Model.User.class);
 			//query.uniqueResult();
@@ -31,7 +31,7 @@ public class AdminHomeService {
 			transaction.commit();
 			
 		}catch(Exception e){
-			//отменяем транзакцию
+			//Г®ГІГ¬ГҐГ­ГїГҐГ¬ ГІГ°Г Г­Г§Г ГЄГ¶ГЁГѕ
 			transaction.rollback();
 			e.printStackTrace();
 		}finally{
@@ -41,7 +41,7 @@ public class AdminHomeService {
         /*for( users.iterator(); users.iterator().hasNext();){
     		
         	user =  (User) users.iterator().next();
-    		//System.out.println(" ResultUserService  вывод флагов "+result.getFlag1()+" __ "+result.getFlag32());
+    		//System.out.println(" ResultUserService  ГўГ»ГўГ®Г¤ ГґГ«Г ГЈГ®Гў "+result.getFlag1()+" __ "+result.getFlag32());
     		break;
     	}
 		
