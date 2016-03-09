@@ -22,7 +22,7 @@ public class AdminHomeService {
 		try{
 			transaction = session.getTransaction();
 			transaction.begin();
-			SQLQuery query = session.createSQLQuery("SELECT * FROM user WHERE id=25;");
+			SQLQuery query = session.createSQLQuery("SELECT * FROM user;");
 			//query.setParameter(0, user.getLogin());
 			query.addEntity(Model.User.class);
 			//query.uniqueResult();
