@@ -46,7 +46,7 @@ public class LoginServlet extends HttpServlet {
 		if(login.equals("admin")){
 			if(auth == true){
 				
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/admin_home.jsp");                                                        
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/AdminHomeServlet");                                                        
 	            dispatcher.forward(request, response);
 				return;
 			}

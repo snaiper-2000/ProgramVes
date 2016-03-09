@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<jsp:useBean id="userq" class="Model.User" scope="request"></jsp:useBean>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -35,6 +37,24 @@
    </table>
    
 Сессия Атрибут (для Теста)<%=session.getAttribute("user") %>
+
+
+<table height="100" bgcolor="#FFFFFF" border="1" width="30%">
+<tr>
+	<td>Дата выполнения переключений: <% if( request.getAttribute("message") != null ){ %>
+    ${message}
+    <% } %></td>
+	</tr>
+	<tr>
+
+<core:forEach items="${users}" var="user">
+	<tr>
+	<td>User: ${users} </td> 
+
+    
+	</tr>
+</core:forEach>
+</table>
 
 </body>
 </html>
