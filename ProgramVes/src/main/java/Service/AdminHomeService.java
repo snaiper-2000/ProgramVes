@@ -12,11 +12,11 @@ import Model.User;
 
 public class AdminHomeService {
 	
-	public List<Object []> usersInBd(){
+	public List<Object> usersInBd(){
 		Session session = HibernateUtil.openSession();
 		Transaction transaction = null;
 		//String userLoginDB = null;
-		List<Object []> users = null;
+		List<Object> users = null;
 		User user = null;
 		
 		try{

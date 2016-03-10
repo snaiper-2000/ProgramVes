@@ -20,7 +20,9 @@ import Service.AdminHomeService;
 public class AdminHomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	AdminHomeService adminHomeService = new AdminHomeService();
-	User user = new User();
+	User user = null;
+	
+	List<User> use = new ArrayList<User>();
        
     
     public AdminHomeServlet() {   
@@ -30,7 +32,7 @@ public class AdminHomeServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
-		List<Object[]> users = adminHomeService.usersInBd();
+		List<Object> users = adminHomeService.usersInBd();
 		
 		//User array [];
 		
@@ -41,12 +43,25 @@ public class AdminHomeServlet extends HttpServlet {
         	for(int i=0; i<users.size(); i++){
         		System.out.println("Массив пользователей элемент № "+i+" "+users.get(i));
         		
+        		User us = (User)users.get(i);
+        		us.getName();
         		
+        		
+        		List<User> use = new ArrayList<User>();
+        		use.add(us);
+        	
         		 
         		//User[] odj = (User[]) users.get(i);
-        		System.out.println("Массив пользователей  1223232 ");
+        		System.out.println("Массив пользователей  us "+ us.getName());
         		
         	}
+        	
+        	/*for( users.iterator(); users.iterator().hasNext();){
+        		
+        		user =  (User[]) users.iterator().next();
+        		System.out.println(" ResultUserService  вывод флагов ");
+        		break;
+        	}*/
         	
        
         	// users.get(0);
@@ -62,7 +77,7 @@ public class AdminHomeServlet extends HttpServlet {
         	 
 			
 			request.setCharacterEncoding("UTF-8");
-			request.setAttribute("users", users);
+			request.setAttribute("users", use);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/admin_home.jsp");                                                        
             dispatcher.forward(request, response);
 		}/*else{
