@@ -51,7 +51,7 @@ public class AdminHomeServlet extends HttpServlet {
         		use.add(us);
         	
         		 
-        		//User[] odj = (User[]) users.get(i);
+        		
         		System.out.println("Массив пользователей  us "+ us.getName());
         		
         	}
