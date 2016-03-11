@@ -45,6 +45,9 @@ public class LoginServlet extends HttpServlet {
 		//переход на страницу admin_home.jsp
 		if(login.equals("admin")){
 			if(auth == true){
+				HttpSession session = request.getSession();
+				session.setAttribute("user", login);
+				session.setMaxInactiveInterval(30*60);
 				
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/AdminHomeServlet");                                                        
 	            dispatcher.forward(request, response);
@@ -52,6 +55,7 @@ public class LoginServlet extends HttpServlet {
 			}
 		}
 		
+		//переход на страницу home.jsp или index.jsp, если пароль или логин введены не верно
 		if(auth == true){
 			HttpSession session = request.getSession();
 			session.setAttribute("user", login);

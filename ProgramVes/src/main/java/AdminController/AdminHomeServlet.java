@@ -1,4 +1,4 @@
-package Controller;
+package AdminController;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import AdminService.AdminHomeService;
 import Model.Result;
 import Model.User;
-import Service.AdminHomeService;
 
 
 @WebServlet("/AdminHomeServlet")
@@ -77,7 +77,7 @@ public class AdminHomeServlet extends HttpServlet {
         	 
 			
 			request.setCharacterEncoding("UTF-8");
-			request.setAttribute("users", use);
+			request.setAttribute("users", users);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/admin_home.jsp");                                                        
             dispatcher.forward(request, response);
 		}/*else{

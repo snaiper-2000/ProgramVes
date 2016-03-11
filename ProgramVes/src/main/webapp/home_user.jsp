@@ -7,62 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon"/>
 <title>ВЭС Дата выполнения переключений</title>
-<link rel="stylesheet" href="/ProgramVes/main/resources/css/cssHome.css"/>
-<style>
-   body
-{
-    background-color: #8BB9C7;
-    font-family: sans-serif;
-}
-  
-.style1
-{
-    
-   vertical-align:top 
-}
-
-.style2
-{
-   font-family: Arial, Helvetica, sans-serif; 
-   vertical-align:middle; 
-   font-size: 180%;
-   text-align:  center;
-   
-}
-
-.style3
-{
-    
-   color:blue;
-}
-
-.style4
-{
-    
-   color:red;
-}
-
-.style5
-{
-   width:60px;
-   height:40px;
-   color:red; 
-}
-
-.style6
-{
-   font-size: 200%;
-   border-bottom: 2px solid maroon;
-   font-weight: normal;
-   padding-bottom: 5px; 
-}
-
-.style7
-{
-   height:40px;
-   color:red; 
-}
-  </style>
+<link rel="stylesheet" href="css/cssIndex.css"/>
 </head>
 
 <body>

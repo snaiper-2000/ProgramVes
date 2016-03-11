@@ -1,4 +1,4 @@
-package Service;
+package AdminService;
 
 import java.util.List;
 
@@ -17,7 +17,7 @@ public class AdminHomeService {
 		Transaction transaction = null;
 		//String userLoginDB = null;
 		List<Object> users = null;
-		User user = null;
+		//User user = null;
 		
 		try{
 			transaction = session.getTransaction();
