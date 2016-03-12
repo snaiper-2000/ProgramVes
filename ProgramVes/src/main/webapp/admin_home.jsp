@@ -33,7 +33,7 @@
     </tr>
    </table>
    
-Сессия Атрибут (для Теста)<%=session.getAttribute("user") %>
+Текущая сессия (для теста)<%=session.getId() %>
 <br>
 Пользователи:
 <table height="100" bgcolor="#FFFFFF" border="1" width="30%">
@@ -61,10 +61,15 @@
 	<td>${user.mobileTelephone}</td>
 	<td>${user.email}</td>
 	<td>${user.dateUserReg}</td>
-	<td><form action="EditUser" method="get">
+	<td>
+	
+	<a href="<c:url value="/EditUserServlet?userID=${user.id}"/>">Редактировать</a>
+	
+	<!-- <form action="EditUser" method="get">
 	    <!-- скрытое поле для передачи выбранной даты в Servlet -->
-	    <input name="userID" type="hidden" value="${user.id}">
-        <input type="submit" value="Редактировать профиль">
+	<!--    <input name="userID" type="hidden" value="${user.id}">
+        <input type="submit" value="Редактировать профиль"> 
+        -->
     </td>
 	<td>Редактировать отчет переключений</td>
 	<td>Удалить</td>

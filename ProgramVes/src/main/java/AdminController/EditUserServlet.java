@@ -12,13 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import AdminService.EditUserService;
 
-@WebServlet("/EditUser")
-public class EditUser extends HttpServlet {
+@WebServlet("/EditUserServlet ")
+public class EditUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	EditUserService editUserService = new EditUserService();
        
     
-    public EditUser() {
+    public EditUserServlet() {
     }
 
 	
@@ -27,6 +27,8 @@ public class EditUser extends HttpServlet {
 		String userID = request.getParameter("userID");
 		
 		List<Object> userDB = editUserService.getUserDB(userID);
+		
+		System.out.println("Тест пятница "+userDB);
 		
 		request.setCharacterEncoding("UTF-8");
 		request.setAttribute("userDB", userDB);
