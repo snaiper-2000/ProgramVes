@@ -68,7 +68,7 @@ public class AuthFilter implements Filter {
             //this.context.log("Unauthorized access request");
             res.sendRedirect("index.jsp");
            
-            }else{
+           }else{
             	//System.out.println("Сессия 1 "+ session.getId());
             // pass the request along the filter chain
         	filterChain.doFilter(request, response);

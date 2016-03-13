@@ -34,7 +34,7 @@ public class DeleteUserServlet extends HttpServlet {
 		
 		System.out.println("Вывод объекта из сессии = "+loginAdmin);
 		
-		if(loginAdmin.equals("admin")){
+		/*if(loginAdmin.equals("admin")){
 			
 			request.setCharacterEncoding("UTF-8");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/AdminHomeServlet");
@@ -42,9 +42,26 @@ public class DeleteUserServlet extends HttpServlet {
 	        dispatcher.forward(request, response);
 			
 			return;
-		}
+		}*/
 		
-        deleteUserService.getDeteteUser(userID);
+		Boolean userLogin = deleteUserService.getDeteteUser(userID);
+		
+		if(userLogin == false){
+			
+			request.setCharacterEncoding("UTF-8");
+			//request.setAttribute("IDUser", IDUser);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/AdminHomeServlet");
+			request.setAttribute("message", "Пользователь удален.");
+	        dispatcher.forward(request, response);
+			
+		}else{
+			
+			request.setCharacterEncoding("UTF-8");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/AdminHomeServlet");
+			request.setAttribute("message", "Ошибка! Не возможно удалить администратора!");
+	        dispatcher.forward(request, response);
+			
+		}
 		
        /* for(int i=0; i<IDUser.size(); i++){
         	
@@ -56,11 +73,11 @@ public class DeleteUserServlet extends HttpServlet {
         
         //System.out.println("ID при удалении переключений "+ IDUser.get(0));
 		
-		request.setCharacterEncoding("UTF-8");
+		/*request.setCharacterEncoding("UTF-8");
 		//request.setAttribute("IDUser", IDUser);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/AdminHomeServlet");
 		request.setAttribute("message", "Пользователь удален.");
-        dispatcher.forward(request, response);
+        dispatcher.forward(request, response);  */
 	}
 
 }

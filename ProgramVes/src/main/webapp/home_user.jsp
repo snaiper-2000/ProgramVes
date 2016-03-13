@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon"/>
 <title>ВЭС Дата выполнения переключений</title>
-<link rel="stylesheet" href="css/cssIndex.css"/>
+<link rel="stylesheet" href="css/cssHome.css"/>
 </head>
 
 <body>

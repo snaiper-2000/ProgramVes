@@ -10,24 +10,26 @@ import Hibernate.HibernateUtil;
 
 public class DeleteUserService {
 	
-public void getDeteteUser(String userID){
+public Boolean getDeteteUser(String userID){
+	    Boolean result=false;
+	
+	    String userLogin =  getUserLoginDB(userID);
+	    
+	    if(userLogin.equals("admin")){
+	    	result=true;
+	    	
+	    	return result;
+	    }
 		
 		Session session = HibernateUtil.openSession();
 		Transaction transaction = null;
 		List<Object> idUser = null;
 		
 		
-		
 		try{
 			transaction = session.getTransaction();
 			transaction.begin();
-			/*SQLQuery query2 = session.createSQLQuery("SELECT id  FROM result WHERE date_result=?;");
-			query2.setParameter(0, userID);
-			idUser = query2.list();
-			
-			System.out.println("idUser для провкрки "+idUser);
-		*/
-			
+					
 			SQLQuery query = session.createSQLQuery("DELETE FROM user WHERE id=?;");
 			query.setParameter(0, userID);
 			query.executeUpdate();
@@ -46,6 +48,37 @@ public void getDeteteUser(String userID){
 			session.close();
 		}
 		
-		//return idUser;
+		return result;
+}
+   
+   public String getUserLoginDB(String userID){
+	
+	Session session = HibernateUtil.openSession();
+	Transaction transaction = null;
+	//List<Object> idUser = null;
+	String userLogin = null;
+	
+	
+	
+	try{
+		transaction = session.getTransaction();
+		transaction.begin();
+		SQLQuery query = session.createSQLQuery("SELECT login  FROM user WHERE id=?;");
+		query.setParameter(0, userID);
+		userLogin = (String)query.uniqueResult();
+		
+		System.out.println("!!!Выводимый логин для провкрки "+userLogin);
+		
+		transaction.commit();
+		
+	}catch(Exception e){
+		//отменяем транзакцию
+		transaction.rollback();
+		e.printStackTrace();
+	}finally{
+		session.close();
+	}
+	
+	return userLogin;
 }
 }
