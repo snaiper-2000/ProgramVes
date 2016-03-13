@@ -34,6 +34,16 @@ public class EditUserUpdateServlet extends HttpServlet {
 		String mobileTelephone = request.getParameter("mobileTelephone");
 		String email = request.getParameter("email");
 		
+		//запрет на редактирование учетной записи администратора
+		if(login.equals("admin")){
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/AdminHomeServlet");                  
+            request.setAttribute("message", "Редактирование учетной записи администратора запрещено!");                                       
+            dispatcher.forward(request, response);
+			
+			return;
+		}
+		
 		User user = new User (surname,name,middleName,login,password,mobileTelephone,email);
 		
 		EditUserUpdateService editUserUpdateService = new EditUserUpdateService();
@@ -41,12 +51,12 @@ public class EditUserUpdateServlet extends HttpServlet {
 		
 		if(result == true){
 			//response.sendRedirect("index.jsp");
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/edit_user.jsp");                  
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/AdminHomeServlet");                  
             request.setAttribute("message", "Данные пользователя успешно изменены");                                       
             dispatcher.forward(request, response);
 		}else{
 			//response.sendRedirect("index.jsp");
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/edit_user.jsp");                  
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/AdminHomeServlet");                  
             request.setAttribute("message", "Пользователь с таким ЛОГИНОМ уже существует! ");                                       
             dispatcher.forward(request, response);
 		}

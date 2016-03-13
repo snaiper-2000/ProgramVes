@@ -27,6 +27,8 @@
             <input type="submit" class="style5" value="EXIT">
             </form>   
       </td>
+     </tr>
+     <tr> 
       <td class="style3" width="70%"><% if( request.getAttribute("message") != null ){ %>
            ${message}<% } %>
       </td>
@@ -61,20 +63,16 @@
 	<td>${user.mobileTelephone}</td>
 	<td>${user.email}</td>
 	<td>${user.dateUserReg}</td>
-	<td>
-	
-	<a href="<c:url value="/EditUserServlet?userID=${user.id}"/>">Редактировать</a>
+	<td><a href="<c:url value="/EditUserServlet?userID=${user.id}"/>">Редактировать</a></td>
 	
 	<!-- <form action="EditUser" method="get">
 	    <!-- скрытое поле для передачи выбранной даты в Servlet -->
 	<!--    <input name="userID" type="hidden" value="${user.id}">
         <input type="submit" value="Редактировать профиль"> 
         -->
-    </td>
-	<td>Редактировать отчет переключений</td>
-	<td>Удалить</td>
+	<td><a href="<c:url value="/EditResultServlet?userID=${user.id}"/>">Редактировать отчет переключений</a></td>
+	<td><a href="<c:url value="/DeleteUserServlet?userID=${user.id}"/>">Удалить</a></td>
 
-    
 	</tr>
 </c:forEach>
 </table>

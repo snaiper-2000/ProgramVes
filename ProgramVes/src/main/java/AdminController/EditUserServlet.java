@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import AdminService.EditUserService;
 
-@WebServlet("/EditUserServlet ")
+@WebServlet("/EditUserServlet")
 public class EditUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	EditUserService editUserService = new EditUserService();

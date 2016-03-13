@@ -43,5 +43,19 @@ public class AdminHomeServlet extends HttpServlet {
             dispatcher.forward(request, response);
 		
 	}
+	
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		HttpSession session = request.getSession();
+		
+		List<Object> users = adminHomeService.usersInBd();
+		session.setMaxInactiveInterval(30*60);
+		
+			request.setCharacterEncoding("UTF-8");
+			request.setAttribute("users", users);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/admin_home.jsp");                                                        
+            dispatcher.forward(request, response);
+		
+	}
 
 }
