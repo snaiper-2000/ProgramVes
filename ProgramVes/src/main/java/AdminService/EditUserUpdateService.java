@@ -1,7 +1,5 @@
 package AdminService;
 
-import java.util.Date;
-
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -11,44 +9,70 @@ import Model.User;
 
 public class EditUserUpdateService {
 	
-	public boolean updateUser(User user){
+	public boolean updateUser(User user,String id){
 		Session session = HibernateUtil.openSession();
-		Boolean result;
+		Boolean result=false;
+		Boolean peremennaya=false;
 		
-		String userLoginDB = userInBd(user);
+		String userInDB = userInBd(user);
+		Integer userIDInBd = userIDInBd(user,id);
 		
-		//проверяет совпадает ли введенный логин с имеющимся в базе
-		if(user.getLogin().equals(userLoginDB)){
-			result = false;
-		}else{
-		
-	    result = true;
-/*		if(userInBd(user) == true){
-			return false;//проверки существования пользователя по логину и email в базе
+		//РїСЂРѕРІРµСЂСЏРµС‚ СЃРѕРІРїР°РґР°РµС‚ Р»Рё РІРІРµРґРµРЅРЅС‹Р№ Р»РѕРіРёРЅ СЃ РёРјРµСЋС‰РёРјСЃСЏ РІ Р±Р°Р·Рµ
+		if(user.getLogin().equals(userInDB)){
+			if(id.equals(userIDInBd)){
+				
+				peremennaya=true;
+			    
+			}else{
+				
+				peremennaya=false;
+				result = false;
+				return result;
+			}
+			
+			peremennaya=true;
 		}
-*/		
+		
+		if(peremennaya=true){
+				
 		Transaction transaction = null;
 		
 		try{
 			transaction = session.getTransaction();
 			transaction.begin();
-		
-			session.saveOrUpdate(user);
-			transaction.commit();// применяем транзакцию
+			
+			transaction = session.getTransaction();
+			transaction.begin();
+			SQLQuery query = session.createSQLQuery("UPDATE user SET surname=?, name=?, middleName=?, login=?, password=?, mobileTelephone=?, email=? WHERE id=?;");
+			query.setParameter(0, user.getSurname());
+			query.setParameter(1, user.getName());
+			query.setParameter(2, user.getMiddleName());
+			query.setParameter(3, user.getLogin());
+			query.setParameter(4, user.getPassword());
+			query.setParameter(5, user.getMobileTelephone());
+			query.setParameter(6, user.getEmail());
+			query.setParameter(7, id);
+			query.executeUpdate();
+			
+			//session.saveOrUpdate(user);
+			transaction.commit();// РїСЂРёРјРµРЅСЏРµРј С‚СЂР°РЅР·Р°РєС†РёСЋ
 		}catch(Exception e){
 			 
-			//отменяем транзакцию
+			//РѕС‚РјРµРЅСЏРµРј С‚СЂР°РЅР·Р°РєС†РёСЋ
 			transaction.rollback();
 			e.printStackTrace();
 		}finally{
 			session.close();
 		}
-	}
 		
+		result = true;
+    }else{
+    	result = false;
+    }
 		return result; 
 	} 
 	
-	//Метод проверки существования пользователя по логину в базе
+	//РњРµС‚РѕРґ РїСЂРѕРІРµСЂРєРё СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РїРѕ Р»РѕРіРёРЅСѓ РІ Р±Р°Р·Рµ
 		public String userInBd(User user){
 			Session session = HibernateUtil.openSession();
 			Transaction transaction = null;
@@ -59,27 +83,56 @@ public class EditUserUpdateService {
 				transaction.begin();
 				SQLQuery query = session.createSQLQuery("SELECT login FROM user WHERE login=?;");
 				query.setParameter(0, user.getLogin());
-				//query.addEntity(Model.User.class);
-				//query.uniqueResult();
-				userLoginDB = (String) query.uniqueResult();//возвращает экземпляр или null
-				transaction.commit();// применяем транзакцию
+				
+				userLoginDB = (String) query.uniqueResult();//РІРѕР·РІСЂР°С‰Р°РµС‚ СЌРєР·РµРјРїР»СЏСЂ РёР»Рё null
+				
+				transaction.commit();// РїСЂРёРјРµРЅСЏРµРј С‚СЂР°РЅР·Р°РєС†РёСЋ
 				
 				
-				System.out.println("Пользователь с логином = "+userLoginDB+"уже существует");
+				System.out.println("РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ СЃ Р»РѕРіРёРЅРѕРј = "+userLoginDB+"СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚");
 				
 			}catch(Exception e){
 				 
-				//отменяем транзакцию
+				//РѕС‚РјРµРЅСЏРµРј С‚СЂР°РЅР·Р°РєС†РёСЋ
 				transaction.rollback();
 				e.printStackTrace();
 			}finally{
 				session.close();
-				//sessionFactory.close();
+			}
+			
+			return userLoginDB;
+		}
+		
+		public Integer userIDInBd(User user,String id){
+			Session session = HibernateUtil.openSession();
+			Transaction transaction = null;
+			Integer userIdDB = null;
+			
+			
+			try{
+				transaction = session.getTransaction();
+				transaction.begin();
+				SQLQuery query = session.createSQLQuery("SELECT id FROM user WHERE login=?;");
+				query.setParameter(0, user.getLogin());
+				
+				userIdDB = (Integer)query.uniqueResult();
+				
+				System.out.println("РџРµС‡Р°С‚СЊ id СЋР·РµСЂР° РёР· Р±Р°Р·С‹"+ userIdDB);
+				
+				transaction.commit();// РїСЂРёРјРµРЅСЏРµРј С‚СЂР°РЅР·Р°РєС†РёСЋ
+				
+				
+			}catch(Exception e){
+				 
+				//РѕС‚РјРµРЅСЏРµРј С‚СЂР°РЅР·Р°РєС†РёСЋ
+				transaction.rollback();
+				e.printStackTrace();
+			}finally{
+				session.close();
 			}
 			
 			
-			
-			return userLoginDB;
+			return userIdDB;
 		}
 
 }

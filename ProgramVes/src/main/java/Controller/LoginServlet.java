@@ -70,7 +70,7 @@ public class LoginServlet extends HttpServlet {
             System.out.println(session.getAttribute("user"));
 		}else{ 
             RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");                  
-            request.setAttribute("message", "Имя пользователя или пароль неправильные ");                                       
+            request.setAttribute("message", "Имя пользователя или пароль <br> введены не верно ");                                       
             dispatcher.forward(request, response);
 		}
 	}

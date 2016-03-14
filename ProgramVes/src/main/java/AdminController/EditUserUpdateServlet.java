@@ -26,6 +26,7 @@ public class EditUserUpdateServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		response.setContentType("text/html;charset=UTF-8");
+		String id = request.getParameter("id");
 		String surname = request.getParameter("surname");
 		String name = request.getParameter("name");
 		String middleName = request.getParameter("middleName");
@@ -47,9 +48,9 @@ public class EditUserUpdateServlet extends HttpServlet {
 		User user = new User (surname,name,middleName,login,password,mobileTelephone,email);
 		
 		EditUserUpdateService editUserUpdateService = new EditUserUpdateService();
-		boolean result = editUserUpdateService.updateUser(user);
+		boolean result = editUserUpdateService.updateUser(user,id);
 		
-		if(result == true){
+		if(result == false){
 			//response.sendRedirect("index.jsp");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/AdminHomeServlet");                  
             request.setAttribute("message", "ƒанные пользовател€ успешно изменены");                                       

@@ -64,10 +64,10 @@ public class ModelFilter implements Filter {
         //filterChain.doFilter(req, res);
         if(session.getAttribute("user") == null){
     		
-        	RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");                                                        
+        	RequestDispatcher dispatcher = request.getRequestDispatcher("/error.jsp");                                                        
             dispatcher.forward(request, response);
     		
-        	//res.sendRedirect("index.jsp");
+        	//res.sendRedirect("/ProgramVes/index.jsp");
         	
     		
     		filterChain.doFilter(request, response);

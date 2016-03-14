@@ -78,39 +78,6 @@
     </ul>
 </form> 
 
-<!--  <table>
- -  <form action="RegServlet" method="POST">
- -    <tr>
- -     <td>Фамилия</td>
- -     <td><input type="text" name="surname"></td>
- -    </tr>
- -    <tr>
- -     <td>Имя</td>
- -     <td><input type="text" name="name"></td>
- -    </tr>
- -    <tr>
- -     <td>Отчество</td>
- -     <td><input type="text" name="middleName"></td>
- -    </tr>
- -    <tr>
- -     <td>Логин</td>
- -     <td><input type="text" name="login"></td>
- -    </tr>
- -    <tr>
- -     <td>Пароль</td>
- -     <td><input type="password" name="password"></td>
- -    </tr>
- -    <tr>
- -     <td>Моб.тел.</td>
- -     <td><input type="text" name="mobileTelephone"></td>
- -    </tr>
- -    <tr>
- -     <td>Электронная почта</td>
- -     <td><input type="text" name="email"></td>
- -    </tr>
-      <input type="submit" name="submit" value="Кнопка"
- </form> -->
- </table>
 
 </body>
 </html>

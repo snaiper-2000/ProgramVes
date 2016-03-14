@@ -39,6 +39,8 @@ public class AuthFilter implements Filter {
         HttpSession session = req.getSession();
         //String perem = (String) session.getAttribute("user");
         System.out.println("печать uriPath перед reg.jsp "+uriPath);
+        
+        //фильтрация страницы регистрации
         if ("reg.jsp".equals(uriPath)) {
         	
         	res.sendRedirect("reg.jsp");
@@ -46,6 +48,8 @@ public class AuthFilter implements Filter {
         	filterChain.doFilter(request, response);	
         }
         System.out.println("печать uriPath перед /home.jsp "+uriPath);
+        
+        //фильтрация домашней страницы
         if ("/home.jsp".equals(uriPath)) {
         	
         	if(session.getAttribute("user") == null){
@@ -60,7 +64,125 @@ public class AuthFilter implements Filter {
         	}	
         }
         
-        if(session == null /*|| session.getAttribute("user") == null*/ && (uri.endsWith("html") || uri.endsWith("LoginServlet"))){
+        //фильтрция отчет по переключениям пользователя(home_user.jsp)
+        if ("/home_user.jsp".equals(uriPath)) {
+        	
+        	if(session.getAttribute("user") == null){
+        		
+        		res.sendRedirect("index.jsp");
+        		
+        		filterChain.doFilter(request, response);
+        		
+        	}else{res.sendRedirect("home_user.jsp");
+        	
+        	filterChain.doFilter(request, response);
+        	}	
+        }
+        
+        //фильтрция Результаты переключений пользователя(result_user.jsp)
+        if ("/result_user.jsp".equals(uriPath)) {
+        	
+        	if(session.getAttribute("user") == null){
+        		
+        		res.sendRedirect("index.jsp");
+        		
+        		filterChain.doFilter(request, response);
+        		
+        	}else{res.sendRedirect("result_user.jsp");
+        	
+        	filterChain.doFilter(request, response);
+        	}	
+        }
+        
+        //фильтрция Результаты переключений (result.jsp)
+        if ("/result.jsp".equals(uriPath)) {
+        	
+        	if(session.getAttribute("user") == null){
+        		
+        		res.sendRedirect("index.jsp");
+        		
+        		filterChain.doFilter(request, response);
+        		
+        	}else{res.sendRedirect("result.jsp");
+        	
+        	filterChain.doFilter(request, response);
+        	}	
+        }
+        
+        //Панель администратора (admin_home.jsp)
+        if ("/admin_home.jsp".equals(uriPath)) {
+        	
+        	if(session.getAttribute("user") == null){
+        		
+        		res.sendRedirect("index.jsp");
+        		
+        		filterChain.doFilter(request, response);
+        		
+        	}else{res.sendRedirect("admin_home.jsp");
+        	
+        	filterChain.doFilter(request, response);
+        	}	
+        }
+        
+        //администратор редактировать отчет переключений (edit_result.jsp)
+        if ("/edit_result.jsp".equals(uriPath)) {
+        	
+        	if(session.getAttribute("user") == null){
+        		
+        		res.sendRedirect("index.jsp");
+        		
+        		filterChain.doFilter(request, response);
+        		
+        	}else{res.sendRedirect("edit_result.jsp");
+        	
+        	filterChain.doFilter(request, response);
+        	}	
+        }
+        
+        //администратор просмотр результата переключений (edit_result_user.jsp)
+        if ("/edit_result_user.jsp".equals(uriPath)) {
+        	
+        	if(session.getAttribute("user") == null){
+        		
+        		res.sendRedirect("index.jsp");
+        		
+        		filterChain.doFilter(request, response);
+        		
+        	}else{res.sendRedirect("edit_result_user.jsp");
+        	
+        	filterChain.doFilter(request, response);
+        	}	
+        }
+        
+        //администратор редактировать пользователя (edit_user.jsp)
+        if ("/edit_user.jsp".equals(uriPath)) {
+        	
+        	if(session.getAttribute("user") == null){
+        		
+        		res.sendRedirect("index.jsp");
+        		
+        		filterChain.doFilter(request, response);
+        		
+        	}else{res.sendRedirect("edit_user.jsp");
+        	
+        	filterChain.doFilter(request, response);
+        	}	
+        }
+        
+        //тест модель фильтр
+        if ("/HomeUserServlet".equals(uriPath)) {
+        	
+        	if(session.getAttribute("user") == null){
+        		
+        		res.sendRedirect("error.jsp");
+        		
+        		filterChain.doFilter(request, response);
+        		        	
+        	filterChain.doFilter(request, response);
+        	}	
+        }
+        
+        if(session == null && (uri.endsWith("html") || uri.endsWith("LoginServlet"))){
         	
         	//if ("/reg.jsp".equals(uriPath) ||  "logout.jsp".equals(uriPath)) {
            //filterChain.doFilter(request, response);  // вызываем следующий фильтр.

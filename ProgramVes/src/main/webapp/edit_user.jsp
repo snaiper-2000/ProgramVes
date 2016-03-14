@@ -44,7 +44,7 @@
 	<form action="EditUserUpdateServlet" method="post">
 	
 	<tr><td>Пользователь :</td> <td>Редактирование данных :</td></tr>
-	<tr><td>ID: ${user.id} </td> <td bgcolor="red">Данные защищены от редактирования</td></tr>
+	<tr><td>ID: ${user.id} </td> <td bgcolor="red"><input name="id" type="hidden" value="${user.id}">Данные защищены от редактирования</td></tr>
 	<tr><td>Фамилия: ${user.surname}</td> <td><input type="text" name="surname" value="${user.surname}"></td></tr>
 	<tr><td>Имя: ${user.name}</td> <td><input type="text" name="name" value="${user.name}"></td></tr>
 	<tr><td>Отчество: ${user.middleName}</td> <td> <input type="text" name="middleName" value="${user.middleName}"></td></tr>
@@ -57,21 +57,5 @@
     </form>
    </c:forEach> 
    </table>
-   
-<!-- <table height="100" bgcolor="#FFFFFF" border="1" width="30%">
-   <c:forEach items="${userDB}" var="user"> 
-   
-   <form action="" method="post">
-   <input type="text" name="surname" value="${user.surname}">
-   <input type="text" name="name" value="${user.name}">
-   <input type="text" name="middleName" value="${user.middleName}">
-   <input type="text" name="login" value="${user.login}">
-   <input type="text" name="password" value="${user.password}">
-   <input type="text" name="mobileTelephone" value="${user.mobileTelephone}">
-   <input type="text" name="email" value="${user.email}">
-   <input type="text" name="dateUserReg" value="${user.dateUserReg}">
-   <input type="submit" value="Сохранить">
-   </form>
-   </c:forEach> -->
 </body>
 </html>
