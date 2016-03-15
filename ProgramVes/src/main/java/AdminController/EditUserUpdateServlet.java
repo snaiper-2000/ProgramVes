@@ -35,6 +35,9 @@ public class EditUserUpdateServlet extends HttpServlet {
 		String mobileTelephone = request.getParameter("mobileTelephone");
 		String email = request.getParameter("email");
 		
+		
+		User user = new User (surname,name,middleName,login,password,mobileTelephone,email);
+		
 		//запрет на редактирование учетной записи администратора
 		if(login.equals("admin")){
 			
@@ -45,12 +48,21 @@ public class EditUserUpdateServlet extends HttpServlet {
 			return;
 		}
 		
-		User user = new User (surname,name,middleName,login,password,mobileTelephone,email);
+        if(surname.equals("") || name.equals("") || middleName.equals("") || login.equals("") || password.equals("") || mobileTelephone.equals("") || email.equals("")){
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/AdminHomeServlet");                  
+            request.setAttribute("message", "Ќе заполнены все пол€!");                                       
+            dispatcher.forward(request, response);
+			return;
+            
+		}
+		
+		//User user = new User (surname,name,middleName,login,password,mobileTelephone,email);
 		
 		EditUserUpdateService editUserUpdateService = new EditUserUpdateService();
 		boolean result = editUserUpdateService.updateUser(user,id);
 		
-		if(result == false){
+		if(result == true){
 			//response.sendRedirect("index.jsp");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/AdminHomeServlet");                  
             request.setAttribute("message", "ƒанные пользовател€ успешно изменены");                                       

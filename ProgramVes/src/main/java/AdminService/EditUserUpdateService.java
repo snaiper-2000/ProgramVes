@@ -10,39 +10,44 @@ import Model.User;
 public class EditUserUpdateService {
 	
 	public boolean updateUser(User user,String id){
-		Session session = HibernateUtil.openSession();
-		Boolean result=false;
-		Boolean peremennaya=false;
+		//Session session = HibernateUtil.openSession();
+		Boolean result = false;
+		//Boolean peremennaya=false;
 		
-		String userInDB = userInBd(user);
+		//int idInt = (Integer) id;
+		
+		int chislo=Integer.parseInt(id);
+		
+		System.out.println("печать id cо страницы панель администратора"+id);
+		
+		String userLoginInBd = userLoginInBd(user);
 		Integer userIDInBd = userIDInBd(user,id);
 		
-		//проверяет совпадает ли введенный логин с имеющимся в базе
-		if(user.getLogin().equals(userInDB)){
-			if(id.equals(userIDInBd)){
+		System.out.println(user.getLogin()+" = "+userLoginInBd+" ии "+id+" = "+userIDInBd);
+		
+		if(user.getLogin().equals(userLoginInBd) && userIDInBd.equals(chislo)){
+			/*if(id.equals(userIDInBd)){*/
 				
-				peremennaya=true;
-			    
-			}else{
-				
-				peremennaya=false;
-				result = false;
+				result = true;
+				updateUserBd(user, id);
 				return result;
-			}
-			
-			peremennaya=true;
+				
+		
 		}
 		
-		if(peremennaya=true){
-				
+		return result;
+		
+	}
+			
+public void updateUserBd(User user, String id){			
+			
+	    Session session = HibernateUtil.openSession();		
 		Transaction transaction = null;
 		
 		try{
 			transaction = session.getTransaction();
 			transaction.begin();
 			
-			transaction = session.getTransaction();
-			transaction.begin();
 			SQLQuery query = session.createSQLQuery("UPDATE user SET surname=?, name=?, middleName=?, login=?, password=?, mobileTelephone=?, email=? WHERE id=?;");
 			query.setParameter(0, user.getSurname());
 			query.setParameter(1, user.getName());
@@ -52,7 +57,9 @@ public class EditUserUpdateService {
 			query.setParameter(5, user.getMobileTelephone());
 			query.setParameter(6, user.getEmail());
 			query.setParameter(7, id);
-			query.executeUpdate();
+			int resultUpdate = query.executeUpdate(); //возвращает количество субъектов которые были изменены
+			
+			System.out.println("Update отчет "+resultUpdate);
 			
 			//session.saveOrUpdate(user);
 			transaction.commit();// применяем транзакцию
@@ -65,15 +72,10 @@ public class EditUserUpdateService {
 			session.close();
 		}
 		
-		result = true;
-    }else{
-    	result = false;
-    }
-		return result; 
-	} 
+}	
 	
 	//Метод проверки существования пользователя по логину в базе
-		public String userInBd(User user){
+		public String userLoginInBd(User user){
 			Session session = HibernateUtil.openSession();
 			Transaction transaction = null;
 			String userLoginDB = null;
