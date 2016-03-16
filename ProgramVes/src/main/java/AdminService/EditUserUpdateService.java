@@ -25,14 +25,28 @@ public class EditUserUpdateService {
 		
 		System.out.println(user.getLogin()+" = "+userLoginInBd+" ии "+id+" = "+userIDInBd);
 		
+		/*if(user.getLogin() != userLoginInBd ){
+			
+			result = true;
+			updateUserBd(user, id);
+			return result;
+		}*/
+		
 		if(user.getLogin().equals(userLoginInBd) && userIDInBd.equals(chislo)){
 			/*if(id.equals(userIDInBd)){*/
 				
 				result = true;
 				updateUserBd(user, id);
-				return result;
+				//return result;
 				
 		
+		}else{if(userLoginInBd == null ){
+			
+			result = true;
+			updateUserBd(user, id);
+			//return result;
+		}
+			
 		}
 		
 		return result;
